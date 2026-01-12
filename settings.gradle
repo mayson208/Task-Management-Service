@@ -1,0 +1,2 @@
+rootProject.name = 'task-management-service'
+include 'core-domain','application','persistence','api','integration-tests'
