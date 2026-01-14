@@ -9,6 +9,30 @@ import jakarta.persistence.EntityManager;
 
 import java.util.Optional;
 
+import com.example.task.domain.model.TaskStatus;
+
+import java.util.List;
+
+@Override
+public List<Task> findAll(int page, int size, TaskStatus status) {
+    String jpql = "SELECT t FROM TaskEntity t"
+            + (status != null ? " WHERE t.status = :status" : "");
+
+    var query = entityManager.createQuery(jpql, TaskEntity.class);
+
+    if (status != null) {
+        query.setParameter("status", status.name());
+    }
+
+    query.setFirstResult(page * size);
+    query.setMaxResults(size);
+
+    return query.getResultList()
+            .stream()
+            .map(TaskEntityMapper::toDomain)
+            .toList();
+}
+
 public class JpaTaskRepository implements TaskRepository {
 
     private final EntityManager entityManager;

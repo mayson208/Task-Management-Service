@@ -11,6 +11,33 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
+import com.example.task.api.dto.PagedTaskResponse;
+import com.example.task.api.dto.TaskResponse;
+import com.example.task.domain.model.Task;
+import com.example.task.domain.model.TaskStatus;
+
+import java.util.List;
+
+@GetMapping
+public ResponseEntity<PagedTaskResponse> getTasks(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size,
+        @RequestParam(required = false) TaskStatus status
+) {
+    List<TaskResponse> tasks = taskService
+            .getTasks(page, size, status)
+            .stream()
+            .map(task -> new TaskResponse(
+                    task.getId().getValue(),
+                    task.getTitle(),
+                    task.getStatus().name()
+            ))
+            .toList();
+
+    return ResponseEntity.ok(
+            new PagedTaskResponse(tasks, page, size)
+    );
+}
 
 @RestController
 @RequestMapping("/tasks")

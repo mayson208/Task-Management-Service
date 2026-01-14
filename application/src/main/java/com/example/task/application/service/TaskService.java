@@ -3,6 +3,13 @@ package com.example.task.application.service;
 import com.example.task.application.port.TaskRepository;
 import com.example.task.domain.model.Task;
 import com.example.task.domain.valueobject.TaskId;
+import com.example.task.domain.model.TaskStatus;
+
+import java.util.List;
+
+public List<Task> getTasks(int page, int size, TaskStatus status) {
+    return taskRepository.findAll(page, size, status);
+}
 
 public class TaskService {
 
