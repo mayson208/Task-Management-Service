@@ -4,6 +4,8 @@ import com.example.task.api.dto.CreateTaskRequest;
 import com.example.task.api.dto.CreateTaskResponse;
 import com.example.task.application.service.TaskService;
 import com.example.task.domain.valueobject.TaskId;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/tasks")
+@Tag(name = "Tasks", description = "Task management operations")
 public class TaskController {
 
     private final TaskService taskService;
@@ -20,6 +23,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    @Operation(summary = "Create a new task")
     @PostMapping
     public ResponseEntity<CreateTaskResponse> createTask(
             @Valid @RequestBody CreateTaskRequest request
@@ -30,6 +34,7 @@ public class TaskController {
         );
     }
 
+    @Operation(summary = "Mark a task as completed")
     @PostMapping("/{id}/complete")
     public ResponseEntity<Void> completeTask(@PathVariable UUID id) {
         taskService.completeTask(new TaskId(id));
