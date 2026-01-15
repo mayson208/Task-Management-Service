@@ -48,3 +48,12 @@ This project follows a **hexagonal (ports and adapters) architecture**.
 
 Swagger UI is available at:
 
+
+---
+
+## Running the Application
+
+From the project root:
+
+```bash
+./gradlew :api:bootRun
