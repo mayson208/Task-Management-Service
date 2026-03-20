@@ -137,6 +137,17 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Get aggregated task statistics")
+    @ApiResponse(responseCode = "200", description = "Statistics retrieved")
+    @GetMapping("/stats")
+    public ResponseEntity<TaskStatsResponse> getStats() {
+        long total      = queryTasks.count(null);
+        long pending    = queryTasks.count(TaskStatus.PENDING);
+        long inProgress = queryTasks.count(TaskStatus.IN_PROGRESS);
+        long completed  = queryTasks.count(TaskStatus.COMPLETED);
+        return ResponseEntity.ok(new TaskStatsResponse(total, pending, inProgress, completed));
+    }
+
     private TaskResponse toResponse(Task task) {
         return new TaskResponse(
                 task.getId().getValue(),

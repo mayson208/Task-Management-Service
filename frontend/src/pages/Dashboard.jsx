@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { RiCheckboxCircleLine, RiTimeLine, RiLoader4Line, RiTaskLine, RiArrowRightLine } from 'react-icons/ri'
-import { getAllTasks } from '../api/tasks'
+import { getAllTasks, getTaskStats } from '../api/tasks'
 import Card from '../components/Card'
 import Badge from '../components/Badge'
 import Button from '../components/Button'
@@ -28,17 +28,22 @@ function StatCard({ label, value, icon: Icon, color, loading }) {
 }
 
 export default function Dashboard() {
-  const { data, isLoading } = useQuery({
-    queryKey: ['tasks', { page: 0, size: 100 }],
-    queryFn: () => getAllTasks({ page: 0, size: 100 }),
+  const { data: statsData, isLoading: statsLoading } = useQuery({
+    queryKey: ['tasks', 'stats'],
+    queryFn: getTaskStats,
   })
 
-  const tasks = data?.tasks || []
-  const total       = data?.totalElements ?? 0
-  const completed   = tasks.filter(t => t.status === 'COMPLETED').length
-  const inProgress  = tasks.filter(t => t.status === 'IN_PROGRESS').length
-  const pending     = tasks.filter(t => t.status === 'PENDING').length
-  const recent      = tasks.slice(0, 6)
+  const { data: recentData, isLoading: recentLoading } = useQuery({
+    queryKey: ['tasks', { page: 0, size: 6 }],
+    queryFn: () => getAllTasks({ page: 0, size: 6 }),
+  })
+
+  const isLoading  = statsLoading || recentLoading
+  const total      = statsData?.totalTasks      ?? 0
+  const completed  = statsData?.completedTasks  ?? 0
+  const inProgress = statsData?.inProgressTasks ?? 0
+  const pending    = statsData?.pendingTasks     ?? 0
+  const recent     = recentData?.tasks || []
 
   return (
     <div className={`${styles.page} animate-fade`}>
