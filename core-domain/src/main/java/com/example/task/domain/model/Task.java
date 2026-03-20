@@ -8,6 +8,26 @@ import java.util.Objects;
 
 public class Task {
 
+    /**
+     * Reconstitutes a Task from persistent storage, bypassing state machine validation.
+     * Use only in persistence mappers — not for creating new tasks.
+     */
+    public static Task reconstitute(TaskId id, String title, String description,
+                                    TaskStatus status, Instant createdAt, Instant updatedAt) {
+        Task task = new Task(id, title, description, status, createdAt, updatedAt);
+        return task;
+    }
+
+    private Task(TaskId id, String title, String description,
+                 TaskStatus status, Instant createdAt, Instant updatedAt) {
+        this.id = Objects.requireNonNull(id, "TaskId must not be null");
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     private final TaskId id;
     private String title;
     private String description;
@@ -28,21 +48,19 @@ public class Task {
     }
 
     public void markInProgress() {
-        if (this.status == TaskStatus.COMPLETED) {
-            throw new InvalidTaskStateException("Cannot restart a completed task");
-        }
-        if (this.status == TaskStatus.IN_PROGRESS) {
-            throw new InvalidTaskStateException("Task is already in progress");
-        }
-        this.status = TaskStatus.IN_PROGRESS;
-        this.updatedAt = Instant.now();
+        transitionTo(TaskStatus.IN_PROGRESS);
     }
 
     public void markCompleted() {
-        if (this.status == TaskStatus.COMPLETED) {
-            throw new InvalidTaskStateException("Task is already completed");
+        transitionTo(TaskStatus.COMPLETED);
+    }
+
+    private void transitionTo(TaskStatus next) {
+        if (!this.status.canTransitionTo(next)) {
+            throw new InvalidTaskStateException(
+                    String.format("Cannot transition task from %s to %s", this.status, next));
         }
-        this.status = TaskStatus.COMPLETED;
+        this.status = next;
         this.updatedAt = Instant.now();
     }
 

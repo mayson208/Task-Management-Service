@@ -6,7 +6,24 @@
       "Bash(cmd /c \"taskkill /PID 33832 /F\")",
       "Bash(cmd /c \"taskkill /F /PID 33832\")",
       "Bash(powershell -Command \"Stop-Process -Id 33832 -Force\")",
-      "Bash(./gradlew bootRun)"
+      "Bash(./gradlew bootRun)",
+      "Bash(./gradlew test:*)",
+      "Bash(./gradlew compileJava)",
+      "Bash(find /c/Users/Rachel/Desktop/Coding/task-management-service/integration-tests -type f -name *.java -o -name *.gradle)",
+      "Bash(find /c/Users/Rachel/Desktop/Coding/task-management-service -type f \\\\\\(-name *.html -o -name *.tsx -o -name *.jsx -o -name *.vue -o -name *.js \\\\\\))",
+      "Bash(./gradlew clean:*)",
+      "Bash(npm create:*)",
+      "Bash(powershell.exe -Command \"Get-Command node -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source; Get-Command npm -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source\")",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/Rachel/AppData/Roaming/**)",
+      "Read(//c/Users/Rachel/**)",
+      "Bash(export PATH=$PATH:\"/c/Program Files/nodejs\":\"/c/Users/Rachel/AppData/Roaming/npm\":\"/c/Users/Rachel/AppData/Local/Programs/nodejs\")",
+      "Bash(npm --version)",
+      "Bash(export PATH=$PATH:\"/c/Users/Rachel/.vaadin/node\")",
+      "Bash(export NODE_PATH=\"/c/Users/Rachel/.vaadin/node\")",
+      "Bash(export PATH=\"$NODE_PATH:$NODE_PATH/node_modules/npm/bin:$PATH\")",
+      "Bash(export PATH=\"/c/Users/Rachel/.vaadin/node:/c/Users/Rachel/.vaadin/node/node_modules/npm/bin:$PATH\")",
+      "Bash(npm install:*)"
     ]
   }
 }

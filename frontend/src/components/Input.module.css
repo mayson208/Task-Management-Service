@@ -1,0 +1,33 @@
+.wrapper { display: flex; flex-direction: column; gap: 6px; }
+
+.label {
+  font-size: .8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+.input {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 9px 13px;
+  color: var(--text);
+  font-size: .9rem;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+  width: 100%;
+}
+.input::placeholder { color: var(--text-faint); }
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.textarea { resize: vertical; min-height: 90px; }
+
+.hasError { border-color: var(--danger) !important; }
+.hasError:focus { box-shadow: 0 0 0 3px rgba(239,68,68,.18) !important; }
+
+.error { font-size: .8rem; color: var(--danger); }

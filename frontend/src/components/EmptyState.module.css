@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  gap: 10px;
+}
+.icon {
+  font-size: 2.5rem;
+  opacity: .35;
+  margin-bottom: 4px;
+}
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.message {
+  font-size: .875rem;
+  color: var(--text-muted);
+  max-width: 320px;
+  line-height: 1.5;
+}
+.action { margin-top: 8px; }

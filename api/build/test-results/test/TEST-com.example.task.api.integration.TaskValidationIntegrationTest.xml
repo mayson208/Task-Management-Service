@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.task.api.integration.TaskValidationIntegrationTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-03-20T01:56:21.595Z" hostname="DESKTOP-M9FOCU1" time="0.051">
+  <properties/>
+  <testcase name="shouldRejectBlankTitle()" classname="com.example.task.api.integration.TaskValidationIntegrationTest" time="0.008"/>
+  <testcase name="getTasks_withOversizedPage_returns400()" classname="com.example.task.api.integration.TaskValidationIntegrationTest" time="0.009"/>
+  <testcase name="getTasks_withZeroSize_returns400()" classname="com.example.task.api.integration.TaskValidationIntegrationTest" time="0.003"/>
+  <testcase name="getTasks_withNegativePage_returns400()" classname="com.example.task.api.integration.TaskValidationIntegrationTest" time="0.003"/>
+  <testcase name="createTask_returnsAllValidationErrors()" classname="com.example.task.api.integration.TaskValidationIntegrationTest" time="0.027"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

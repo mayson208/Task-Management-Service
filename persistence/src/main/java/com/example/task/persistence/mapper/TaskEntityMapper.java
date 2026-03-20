@@ -21,20 +21,13 @@ public class TaskEntityMapper {
     }
 
     public static Task toDomain(TaskEntity entity) {
-        Task task = new Task(
+        return Task.reconstitute(
                 new TaskId(entity.getId()),
                 entity.getTitle(),
-                entity.getDescription()
+                entity.getDescription(),
+                TaskStatus.valueOf(entity.getStatus()),
+                entity.getCreatedAt(),
+                entity.getUpdatedAt()
         );
-
-        TaskStatus status = TaskStatus.valueOf(entity.getStatus());
-        if (status == TaskStatus.IN_PROGRESS) {
-            task.markInProgress();
-        } else if (status == TaskStatus.COMPLETED) {
-            task.markInProgress(); // transition through IN_PROGRESS first
-            task.markCompleted();
-        }
-
-        return task;
     }
 }

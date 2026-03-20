@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.task.application.usecase.TaskUseCasesTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-03-20T01:56:22.136Z" hostname="DESKTOP-M9FOCU1" time="0.019">
+  <properties/>
+  <testcase name="createTask_andComplete_succeeds()" classname="com.example.task.application.usecase.TaskUseCasesTest" time="0.012"/>
+  <testcase name="getTaskById_whenNotFound_throwsTaskNotFoundException()" classname="com.example.task.application.usecase.TaskUseCasesTest" time="0.001"/>
+  <testcase name="createTask_trimsWhitespaceFromTitle()" classname="com.example.task.application.usecase.TaskUseCasesTest" time="0.0"/>
+  <testcase name="updateTask_withBothFieldsNull_throwsIllegalArgumentException()" classname="com.example.task.application.usecase.TaskUseCasesTest" time="0.001"/>
+  <testcase name="createTask_persistsAndReturnsId()" classname="com.example.task.application.usecase.TaskUseCasesTest" time="0.001"/>
+  <testcase name="updateTask_trimsWhitespaceFromTitle()" classname="com.example.task.application.usecase.TaskUseCasesTest" time="0.001"/>
+  <testcase name="deleteTask_removesTask()" classname="com.example.task.application.usecase.TaskUseCasesTest" time="0.0"/>
+  <testcase name="deleteTask_whenNotFound_throwsTaskNotFoundException()" classname="com.example.task.application.usecase.TaskUseCasesTest" time="0.001"/>
+  <testcase name="changeStatus_whenAlreadyCompleted_throwsInvalidTaskStateException()" classname="com.example.task.application.usecase.TaskUseCasesTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
