@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -12,6 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 class TaskControllerIntegrationTest {
 
     @Autowired
@@ -20,7 +22,7 @@ class TaskControllerIntegrationTest {
     @Test
     void shouldCreateAndCompleteTask() throws Exception {
         String responseBody = mockMvc.perform(
-                        post("/tasks")
+                        post("/api/v1/tasks")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                                     {
@@ -28,7 +30,7 @@ class TaskControllerIntegrationTest {
                                     }
                                 """)
                 )
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
@@ -37,7 +39,7 @@ class TaskControllerIntegrationTest {
                 .replaceAll("[^a-fA-F0-9\\-]", "");
 
         mockMvc.perform(
-                        post("/tasks/{id}/complete", taskId)
+                        post("/api/v1/tasks/{id}/complete", taskId)
                 )
                 .andExpect(status().isNoContent());
     }
