@@ -23,7 +23,11 @@
       "Bash(export NODE_PATH=\"/c/Users/Rachel/.vaadin/node\")",
       "Bash(export PATH=\"$NODE_PATH:$NODE_PATH/node_modules/npm/bin:$PATH\")",
       "Bash(export PATH=\"/c/Users/Rachel/.vaadin/node:/c/Users/Rachel/.vaadin/node/node_modules/npm/bin:$PATH\")",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(./gradlew :api:compileJava)",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(npm run:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)"
     ]
   }
 }
