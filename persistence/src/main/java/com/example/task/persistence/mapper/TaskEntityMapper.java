@@ -7,21 +7,31 @@ import com.example.task.persistence.entity.TaskEntity;
 
 public class TaskEntityMapper {
 
+    private TaskEntityMapper() {}
+
     public static TaskEntity toEntity(Task task) {
         return new TaskEntity(
                 task.getId().getValue(),
                 task.getTitle(),
-                task.getStatus().name()
+                task.getDescription(),
+                task.getStatus().name(),
+                task.getCreatedAt(),
+                task.getUpdatedAt()
         );
     }
 
     public static Task toDomain(TaskEntity entity) {
         Task task = new Task(
                 new TaskId(entity.getId()),
-                entity.getTitle()
+                entity.getTitle(),
+                entity.getDescription()
         );
 
-        if (TaskStatus.valueOf(entity.getStatus()) == TaskStatus.COMPLETED) {
+        TaskStatus status = TaskStatus.valueOf(entity.getStatus());
+        if (status == TaskStatus.IN_PROGRESS) {
+            task.markInProgress();
+        } else if (status == TaskStatus.COMPLETED) {
+            task.markInProgress(); // transition through IN_PROGRESS first
             task.markCompleted();
         }
 

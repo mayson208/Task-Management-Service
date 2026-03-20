@@ -10,7 +10,5 @@ public class CreateTaskResponse {
         this.id = id;
     }
 
-    public UUID getId() {
-        return id;
-    }
+    public UUID getId() { return id; }
 }

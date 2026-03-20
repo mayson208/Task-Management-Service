@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(netstat -ano)",
+      "Bash(taskkill /PID 33832 /F)",
+      "Bash(cmd /c \"taskkill /PID 33832 /F\")",
+      "Bash(cmd /c \"taskkill /F /PID 33832\")",
+      "Bash(powershell -Command \"Stop-Process -Id 33832 -Force\")",
+      "Bash(./gradlew bootRun)"
+    ]
+  }
+}
