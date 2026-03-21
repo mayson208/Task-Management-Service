@@ -1,8 +1,7 @@
 # Task Management Service
 
 A cleanly architected, multi-module Java backend service built with **Spring Boot** and **Gradle**.  
-This project demonstrates professional backend design principles including hexagonal architecture,
-domain-driven design, integration testing, and CI automation.
+
 
 ---
 
