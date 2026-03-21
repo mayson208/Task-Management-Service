@@ -17,9 +17,6 @@ A cleanly architected, multi-module Java backend service built with **Spring Boo
 
 ---
 
-## Architecture Overview
-
-This project follows a **hexagonal (ports and adapters) architecture**.
 
 
 ### Key Principles
